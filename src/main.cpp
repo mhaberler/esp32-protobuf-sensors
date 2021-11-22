@@ -3,7 +3,7 @@
 #include <pb_decode.h>
 #include <pb_encode.h>
 
-#include "nanopbGenerated/update.pb.h" // header generated based on update.proto
+#include "update.pb.h" // header generated based on update.proto
 #include "encodeCallback/encodeCallback.h"
 #include "utils/reboot.h"
 #include "utils/time.h"
@@ -29,11 +29,12 @@ bool readSensorsAndEncode(uint8_t* buffer, pb_ostream_t* stream, SensorUpdateMsg
   // set the 'arg' for the encode callback
   update.sensor.arg = sensorMessages;
 
+  // generating random values for the sensors
   SensorUpdateMsg sensUpdate0 = SensorUpdateMsg_init_zero;
   sensUpdate0.sensorId = SENSOR_ID;
-  sensUpdate0.value.valueInt = random(20, 22);
+  sensUpdate0.value.valueFloat = static_cast<float>(random(200, 220) / 10.0);
   // since 'value' is a union type, we need to set 'which_value' with the correct tag
-  sensUpdate0.which_value = SensorUpdateMsg_valueInt_tag;
+  sensUpdate0.which_value = SensorUpdateMsg_valueFloat_tag;
   sensUpdate0.type = SensorUpdateMsg_Type::SensorUpdateMsg_Type_TEMPERATURE;
   sensUpdate0.time = static_cast<int64_t>(getTime());
 
@@ -41,9 +42,9 @@ bool readSensorsAndEncode(uint8_t* buffer, pb_ostream_t* stream, SensorUpdateMsg
 
   SensorUpdateMsg sensUpdate1 = SensorUpdateMsg_init_zero;
   sensUpdate1.sensorId = SENSOR_ID;
-  sensUpdate1.value.valueInt = random(48, 50);
+  sensUpdate1.value.valueFloat = static_cast<float>(random(490, 500) / 10.0);
   // since 'value' is a union type, we need to set 'which_value' with the correct tag
-  sensUpdate1.which_value = SensorUpdateMsg_valueInt_tag;
+  sensUpdate1.which_value = SensorUpdateMsg_valueFloat_tag;
   sensUpdate1.type = SensorUpdateMsg_Type::SensorUpdateMsg_Type_HUMIDITY;
   sensUpdate1.time = static_cast<int64_t>(getTime());
 
