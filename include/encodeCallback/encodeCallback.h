@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 #include <pb_encode.h>
-#include "nanopbGenerated/update.pb.h"
+#include "update.pb.h"
 
 // using the same convention as Nanopb
 typedef struct _SensorUpdateMsgArray {

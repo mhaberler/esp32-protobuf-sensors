@@ -2,7 +2,7 @@
 
 #include <Arduino.h>
 #include <pb_encode.h>
-#include "nanopbGenerated/update.pb.h"
+#include "update.pb.h"
 
 // https://jpa.kapsi.fi/nanopb/docs/concepts.html#field-callbacks
 bool encode_string(pb_ostream_t* stream, const pb_field_t* field, void* const* arg) {
